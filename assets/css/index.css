@@ -1,0 +1,161 @@
+.block-popup {
+    height: 40%;
+    width: 90%;
+}
+
+.block-button-close {
+    padding: 2%;
+    color: white;
+    background: red;
+    width: fit-content;
+    font-size: 20px;
+    height: fit-content;
+    border-radius: 6px;
+    position: flex !important;
+    right: -1;
+}
+
+/* Styling for the popup */
+.block-popup {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* Styling for the parsed story container */
+#parsed-story {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ff66a3;
+    text-align: center;
+    cursor: pointer;
+    padding: 20px;
+}
+
+/* Hover effect for paragraphs */
+#parsed-story:hover {
+    background-color: rgba(255, 102, 163, 0.1);
+}
+
+/* Styling for the 'Next' button */
+#parsed-story:after {
+    content: "→";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #ff66a3;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+/* Hover effect for 'Next' button */
+#parsed-story:after:hover {
+    transform: scale(1.1);
+    color: #ff3385;
+}
+
+/* Styling for the scrollable area */
+.block-scroll {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Styling for the centering */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main styling for the content */
+.block-o {
+    font-family: "Arial", sans-serif;
+    background-color: #f3f3f3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for the game title */
+.block-text.la {
+    font-size: 36px;
+    color: #ff66a3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Styling for the card buttons */
+.block-card.el-4 {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Styling for the card buttons */
+.block-button {
+    background-color: #ff66a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for buttons */
+.block-button:hover {
+    background-color: #ff3385;
+}
+
+/* Styling for the link button */
+.block-button-link {
+    background-color: #66ccff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for link buttons */
+.block-button-link:hover {
+    background-color: #33b0ff;
+}
