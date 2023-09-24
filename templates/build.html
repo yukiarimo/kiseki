@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
-    <link href="assets/fonts/kawai-font.otf" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/kawai-font.otf') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Kiseki</title>
-    <link rel="stylesheet" href="assets/css/kawai.css">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <script src="assets/js/kawai.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kawai.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="{{ url_for('static', filename='js/kawai.js') }}" defer></script>
     <meta name="description" content="Kiseki is VN builder">
     <meta name="keywords" content="HTML, CSS, framework, JavaScript, Kiseki">
     <link rel="author" href="https://www.yukiarimo.tk" />
@@ -19,7 +19,7 @@
 <body>
     <div class="block-o">
         <div class="coll-lo">
-            <div class="block-l el-9">
+            <div class="block-card el-9">
                 <div class="block-text la">Kiseki</div>
             </div>
         </div>
@@ -28,16 +28,15 @@
             <div class="block-card el-4">
                 <button class="block-button" id="edit-story-button"">Edit Story</button>
                 <button class="block-button">Assets</button>
-                <button class="block-button">Preview</button>
-                <button class="block-button">Settings</button>
                 <button class="block-button">Save</button>
-                <button class="block-button" onclick="OpenLink('index.html')">Exit</button>
+                <button class="block-button" onclick="OpenLink('/')">Exit</button>
             </div>
 
             <div class="block-card el-4">
                 <button class="block-button">Export Build</button>
                 <button class="block-button">Import Assets</button>
-                <button class="block-button">Build Info</button>
+                <button class="block-button">Settings</button>
+
             </div>
         </div>
     </div>
@@ -54,7 +53,7 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/build.js"></script>
+    <script src="{{ url_for('static', filename='js/build.js') }}"></script>
 </body>
 
 </html>

@@ -1,0 +1,29 @@
+title("Love Kizuna")
+author("Yuki Arimo")
+
+start()
+    episode("Ep 1 - A Mysterious Beginning")
+        text("Once upon a time...")
+        text("In this world...")
+    episode("Ep 2 - Unexpected Encounters")
+        text("Hi there. Kizuna's voice chimed, the sound like a melodic echo in the tranquil surroundings. Their eyes met, and in that instant, a bond began to form.")
+        choice("I love you Kizuna", "Reject Kizuna", "Be my girlfriend", "We break up", "Ignore Kizuna") => ("love_dialogue_1", "rejection", "love_dialogue_2", "end", "move")
+        text("As the soft rays of dawn filtered through the trees, the protagonist awoke to find themselves in a world brimming with mysteries and enchantment.")
+
+branch("love_dialogue_1")
+    episode("Ep 1 - A Mysterious Beginning")
+        text("Their heart raced, emotions intertwining like ivy as they mustered the courage to speak.")
+        text("I... I love you, Kizuna. The words hung in the air, delicate and charged, as if the world itself held its breath.")
+
+branch("rejection")
+    text("The moment was fragile, like a delicate petal caught in the wind.")
+    text("I'm sorry, Kizuna. I can't reciprocate the way you feel," they replied gently, hoping their honesty wouldn't shatter the connection they had begun to weave.")
+
+branch("love_dialogue_2")
+    text("The silence between them felt heavy with unspoken words, a tapestry of curiosity and longing.")
+    text("They wished they could express their feelings, but fear held them back, like a hesitant traveler on an unfamiliar path.")
+
+branch("end")
+    text("The end. You lose.")
+
+end()

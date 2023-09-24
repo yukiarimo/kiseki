@@ -637,7 +637,7 @@ body {
 /*  FONT IMPORT  */
 @font-face {
     font-family: "kawai-font";
-    src: url("../../assets/fonts/kawai-font.woff") format("truetype"),
+    src: url("../fonts/kawai-font.woff") format("truetype"),
         url("webfont.woff") format("woff"),
         /* Modern Browsers */
         url("webfont.ttf") format("truetype");
