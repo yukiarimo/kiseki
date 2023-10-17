@@ -45,3 +45,7 @@ function createHeartParticles(event) {
 
 // Add event listener to trigger heart particles on click
 document.addEventListener("click", createHeartParticles, { once: false });
+
+function SaveStory() {
+    document.getElementById('story').style.display = 'none'
+}

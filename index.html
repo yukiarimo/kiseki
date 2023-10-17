@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/kawai-font.wotf') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="assets/fonts/kawai-font.woff">
     <title>Kiseki</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kawai.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
-    <script src="{{ url_for('static', filename='js/kawai.js') }}" defer></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/yukiarimo/kawai-framework@main/assets/css/kawai.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css">
+    <script src="https://cdn.jsdelivr.net/gh/yukiarimo/kawai-framework@main/assets/js/kawai.js" defer></script>
     <meta name="description" content="Kiseki is VN builder">
     <meta name="keywords" content="HTML, CSS, framework, JavaScript, Kiseki">
     <link rel="author" href="https://www.yukiarimo.tk" />
+    <script src="assets/js/novel.js" defer></script>
 </head>
 
 <body>
-    <div class="block-o block-text">
+    <div class="block-o">
         <div class="coll-lo">
             <div class="block-card el-9">
                 <div class="block-text la">Kiseki</div>
@@ -27,8 +27,8 @@
         <div class="coll-lo">
             <div class="block-card el-4">
                 <div class="block-text la">Play</div>
-                <button class="block-button" onclick="OpenPopup('story'); displayStory()">New game</button>
-                <button class="block-button" nclick="OpenPopup('story'); displayStory()">Load progress</button>
+                <button class="block-button" onclick="OpenPopup('story'); displayStory()">New Game</button>
+                <button class="block-button" nclick="OpenPopup('story'); displayStory()">Load Game</button>
                 <button class="block-button">Assets</button>
                 <button class="block-button">Settings</button>
                 <button class="block-button" onclick="document.body.innerHTML = `<div class='block-text la'>Close Tab<div>`">Quit</button>
@@ -36,15 +36,15 @@
 
             <div class="block-card el-4">
                 <div class="block-text la">Create</div>
-                <button class="block-button">Create game</button>
-                <button class="block-button">Import game</button>
-                <button class="block-button" onclick="OpenLink('/build')">Open builder</button>
+                <button class="block-button">Create Game</button>
+                <button class="block-button">Import Game</button>
+                <button class="block-button" onclick="OpenLink('/build.html')">Open Build</button>
                 <button class="block-button">Assets</button>
                 <button class="block-button">Help</button>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="assets/js/index.js"></script>
 
     <div class="block-popup" id="story">
         <div class="block-scroll mudiny center" id="parsed-story">
@@ -55,7 +55,7 @@
             <button class="block-button">History</button>
             <button class="block-button">Skip</button>
             <button class="block-button" onclick="OpenLink('/build')">Auto</button>
-            <button class="block-button">Save</button>
+            <button class="block-button" onclick="SaveStory()">Save</button>
             <button class="block-button">Load</button>
             <button class="block-button">Settings</button>
         </div>

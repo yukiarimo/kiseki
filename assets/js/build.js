@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Open the story editor popup
     document.getElementById("edit-story-button").addEventListener("click", function () {
-        document.getElementById("story-editor-popup").style.display = "block";
+        document.getElementById("story-editor-popup").style.display = "flex";
         // Load the story from local storage and populate the textarea
         const savedStory = localStorage.getItem("story");
         if (savedStory) {
