@@ -21,7 +21,7 @@ Welcome to Kiseki, your go-to tool for crafting captivating and interactive visu
 1. **Clone the Repository**: Start by cloning the Kiseki repository to your local machine.
 
     ```
-    git clone https://github.com/your-username/kiseki.git
+    git clone https://github.com/yukiarimo/kiseki.git
     ```
 
 2. **Open the Application**: Navigate to the project directory and open `index.html` in your web browser to launch the Kiseki visual novel builder.
