@@ -58,8 +58,6 @@ We welcome contributors to make Kiseki even better! If you have ideas, bug repor
 
 Kiseki is released under the MIT license.
 
----
-
 Embark on your storytelling journey with Kiseki today and captivate your audience with interactive visual novels. If you have any questions or need assistance, please don't hesitate to reach out.
 
 Ready to create your own visual novel? Let the adventure begin! 📚✨

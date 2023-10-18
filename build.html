@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
-    <link rel="stylesheet" href="assets/fonts/kawai-font.wotf">
+    <link rel="stylesheet" href="assets/fonts/kawai-font.woff">
     <title>Kiseki</title>
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/gh/yukiarimo/kawai-framework@main/assets/css/kawai.css">
@@ -14,7 +14,6 @@
     <meta name="description" content="Kiseki is VN builder">
     <meta name="keywords" content="HTML, CSS, framework, JavaScript, Kiseki">
     <link rel="author" href="https://www.yukiarimo.tk" />
-    <script src="assets/js/novel.js" defer></script>
 </head>
 
 <body>
@@ -40,7 +39,6 @@
                 <button class="block-button">Import Assets</button>
                 <button class="block-button">Settings</button>
                 <button class="block-button">Save</button>
-                <input type="file" id="bundleFileInput" accept=".kawaibundle">
             </div>
         </div>
     </div>
@@ -78,122 +76,6 @@
     </div>
 
     <script src="assets/js/build.js"></script>
-
-    <script>
-        // Function to display image preview
-        function displayImagePreview(base64) {
-            const assetList = document.getElementById('asset-list');
-            const li = document.createElement('li');
-            const img = document.createElement('img');
-            img.classList.add('preview');
-            img.src = base64;
-            li.appendChild(img);
-            assetList.appendChild(li);
-        }
-    
-        // Show the assets popup
-        document.getElementById('assets-button').addEventListener('click', function () {
-            document.getElementById('assets-popup').style.display = 'block';
-        });
-    
-        // Close the assets popup
-        document.getElementById('assets-close').addEventListener('click', function () {
-            document.getElementById('assets-popup').style.display = 'none';
-        });
-    
-        // Handle file input change
-        document.getElementById('file-input').addEventListener('change', function (e) {
-            const files = e.target.files;
-            for (let i = 0; i < files.length; i++) {
-                // Read the file as a Data URL (Base64 encoded)
-                const reader = new FileReader();
-                reader.onload = function () {
-                    const base64 = reader.result;
-                    
-                    // Add the Base64 string to the list
-                    displayImagePreview(base64);
-                    
-                    // Save the Base64 string to localStorage (add your own logic for uniqueness)
-                    const base64Images = JSON.parse(localStorage.getItem('base64Images')) || [];
-                    base64Images.push(base64);
-                    localStorage.setItem('base64Images', JSON.stringify(base64Images));
-                };
-                reader.readAsDataURL(files[i]);
-            }
-        });
-    
-        // Load and display previously saved images
-        const base64Images = JSON.parse(localStorage.getItem('base64Images')) || [];
-        base64Images.forEach(base64 => {
-            displayImagePreview(base64);
-        });
-    
-        // Create a bundle from assets
-        document.getElementById('create-bundle-button').addEventListener('click', function () {
-            const bundleData = {
-                type: 'kiseki',
-                kiseki: 'novelTextBase64',
-                assets: base64Images,
-            };
-    
-            // Convert bundleData to JSON and create a Blob
-            const bundleJSON = JSON.stringify(bundleData);
-            const bundleBlob = new Blob([bundleJSON], { type: 'application/json' });
-    
-            // Create an Object URL for the bundle Blob
-            const bundleUrl = URL.createObjectURL(bundleBlob);
-    
-            // Create a download link for the bundle
-            const downloadLink = document.createElement('a');
-            downloadLink.href = bundleUrl;
-            downloadLink.download = 'kawaibundle.kawaibundle';
-            downloadLink.click();
-        });
-    
-        document.getElementById('bundleFileInput').addEventListener('change', handleBundleFile);
-    
-        function handleBundleFile(event) {
-            const fileInput = event.target;
-            const file = fileInput.files[0];
-    
-            if (file) {
-                const reader = new FileReader();
-    
-                reader.onload = function (e) {
-                    const bundleJSON = e.target.result;
-    
-                    try {
-                        const bundleData = JSON.parse(bundleJSON);
-                        if (bundleData.type === 'kiseki') {
-                            const novelTextBase64 = bundleData.kiseki;
-                            const imageBase64 = bundleData.assets;
-    
-                            // Decode novel text and images (Base64) and use them in your project
-                            // Example: To display an image, you can set the 'src' attribute of an <img> element
-    
-                            // To decode Base64, you can use atob for text and create Blob URLs for images
-                            const novelText = atob(novelTextBase64);
-                            const imageBlob = new Blob([atob(imageBase64)], { type: 'image/jpeg' });
-                            const imageUrl = URL.createObjectURL(imageBlob);
-    
-                            // Example: Display the novel text and an image
-                            // Replace 'textElement' and 'imageElement' with the corresponding elements in your project
-                            textElement.textContent = novelText;
-                            imageElement.src = imageUrl;
-    
-                            // You can add more logic to handle multiple images if needed
-                        } else {
-                            alert('Invalid .kawaibundle file: Incorrect type.');
-                        }
-                    } catch (error) {
-                        alert('Invalid .kawaibundle file: Error parsing JSON.');
-                    }
-                };
-    
-                reader.readAsText(file);
-            }
-        }
-    </script>
 </body>
 
 </html>

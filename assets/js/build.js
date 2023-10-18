@@ -53,3 +53,115 @@ document.addEventListener("DOMContentLoaded", function () {
         displayStory(target.value); // Update parsed story display
     });
 })
+
+// Function to display image preview
+function displayImagePreview(base64) {
+    const assetList = document.getElementById('asset-list');
+    const li = document.createElement('li');
+    const img = document.createElement('img');
+    img.classList.add('preview');
+    img.src = base64;
+    li.appendChild(img);
+    assetList.appendChild(li);
+}
+
+// Show the assets popup
+document.getElementById('assets-button').addEventListener('click', function () {
+    document.getElementById('assets-popup').style.display = 'flex';
+});
+
+// Close the assets popup
+document.getElementById('assets-close').addEventListener('click', function () {
+    document.getElementById('assets-popup').style.display = 'none';
+});
+
+// Handle file input change
+document.getElementById('file-input').addEventListener('change', function (e) {
+    const files = e.target.files;
+    for (let i = 0; i < files.length; i++) {
+        // Read the file as a Data URL (Base64 encoded)
+        const reader = new FileReader();
+        reader.onload = function () {
+            const base64 = reader.result;
+
+            // Add the Base64 string to the list
+            displayImagePreview(base64);
+
+            // Save the Base64 string to localStorage (add your own logic for uniqueness)
+            const base64Images = JSON.parse(localStorage.getItem('base64Images')) || [];
+            base64Images.push(base64);
+            localStorage.setItem('base64Images', JSON.stringify(base64Images));
+        };
+        reader.readAsDataURL(files[i]);
+    }
+});
+
+// Load and display previously saved images
+const base64Images = JSON.parse(localStorage.getItem('base64Images')) || [];
+base64Images.forEach(base64 => {
+    displayImagePreview(base64);
+});
+
+// Create a bundle from assets
+document.getElementById('create-bundle-button').addEventListener('click', function () {
+    const bundleData = {
+        type: 'kiseki',
+        kiseki: 'novelTextBase64',
+        assets: base64Images,
+    };
+
+    // Convert bundleData to JSON and create a Blob
+    const bundleJSON = JSON.stringify(bundleData);
+    const bundleBlob = new Blob([bundleJSON], {
+        type: 'application/json'
+    });
+
+    // Create an Object URL for the bundle Blob
+    const bundleUrl = URL.createObjectURL(bundleBlob);
+
+    // Create a download link for the bundle
+    const downloadLink = document.createElement('a');
+    downloadLink.href = bundleUrl;
+    downloadLink.download = 'game.kawaibundle';
+    downloadLink.click();
+});
+
+document.getElementById('bundleFileInput').addEventListener('change', handleBundleFile);
+
+function handleBundleFile(event) {
+    const fileInput = event.target;
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const bundleJSON = e.target.result;
+
+            try {
+                const bundleData = JSON.parse(bundleJSON);
+
+                if (bundleData.type === 'kiseki') {
+                    const novelTextBase64 = bundleData.kiseki;
+                    const imageBase64 = bundleData.assets;
+
+                    // Load and display previously saved images
+                    const base64Images = imageBase64
+                    base64Images.forEach(base64 => {
+                        displayImagePreview(base64);
+                    });
+
+                    alert("ok")
+
+                    // You can add more logic to handle multiple images if needed
+                } else {
+                    alert('Invalid .kawaibundle file: Incorrect type.');
+                }
+            } catch (error) {
+                alert('Invalid .kawaibundle file: Error parsing JSON.');
+            }
+        };
+
+        reader.readAsText(file);
+    }
+}

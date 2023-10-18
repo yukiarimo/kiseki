@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <link rel="stylesheet" href="assets/fonts/kawai-font.woff">
     <title>Kiseki</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/yukiarimo/kawai-framework@main/assets/css/kawai.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/yukiarimo/kawai-framework@main/assets/css/kawai.css">
     <link rel="stylesheet" type="text/css" href="assets/css/index.css">
     <script src="https://cdn.jsdelivr.net/gh/yukiarimo/kawai-framework@main/assets/js/kawai.js" defer></script>
     <meta name="description" content="Kiseki is VN builder">
     <meta name="keywords" content="HTML, CSS, framework, JavaScript, Kiseki">
     <link rel="author" href="https://www.yukiarimo.tk" />
-    <script src="assets/js/novel.js" defer></script>
 </head>
 
 <body>
@@ -31,13 +31,15 @@
                 <button class="block-button" nclick="OpenPopup('story'); displayStory()">Load Game</button>
                 <button class="block-button">Assets</button>
                 <button class="block-button">Settings</button>
-                <button class="block-button" onclick="document.body.innerHTML = `<div class='block-text la'>Close Tab<div>`">Quit</button>
+                <button class="block-button"
+                    onclick="document.body.innerHTML = `<div class='block-text la'>Close Tab<div>`">Quit</button>
             </div>
 
             <div class="block-card el-4">
                 <div class="block-text la">Create</div>
                 <button class="block-button">Create Game</button>
                 <button class="block-button">Import Game</button>
+                <input type="file" id="bundleFileInput" accept=".kawaibundle">
                 <button class="block-button" onclick="OpenLink('/build.html')">Open Build</button>
                 <button class="block-button">Assets</button>
                 <button class="block-button">Help</button>
