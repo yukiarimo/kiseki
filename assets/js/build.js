@@ -104,26 +104,14 @@ base64Images.forEach(base64 => {
 
 // Create a bundle from assets
 document.getElementById('create-bundle-button').addEventListener('click', function () {
-    const bundleData = {
-        type: 'kiseki',
-        kiseki: 'novelTextBase64',
-        assets: base64Images,
-    };
+    // Initialize new Bundler
+    const kawaiBundler = new KawaiBundler();
 
-    // Convert bundleData to JSON and create a Blob
-    const bundleJSON = JSON.stringify(bundleData);
-    const bundleBlob = new Blob([bundleJSON], {
-        type: 'application/json'
-    });
+    // Create a bundle
+    kawaiBundler.createBundle('kiseki', [`${localStorage.getItem('base64Images')}`, `${localStorage.getItem('story')}`], 'console.log("done!");');
 
-    // Create an Object URL for the bundle Blob
-    const bundleUrl = URL.createObjectURL(bundleBlob);
-
-    // Create a download link for the bundle
-    const downloadLink = document.createElement('a');
-    downloadLink.href = bundleUrl;
-    downloadLink.download = 'game.kawaibundle';
-    downloadLink.click();
+    // Downloading created bundle or extension
+    kawaiBundler.downloadBundle();
 });
 
 document.getElementById('bundleFileInput').addEventListener('change', handleBundleFile);
@@ -137,26 +125,39 @@ function handleBundleFile(event) {
 
         reader.onload = function (e) {
             const bundleJSON = e.target.result;
+            console.log(bundleJSON)
 
             try {
-                const bundleData = JSON.parse(bundleJSON);
+                const kawaiBundler = new KawaiBundler();
+                var bundleData = kawaiBundler.loadBundle(JSON.parse(bundleJSON));
 
-                if (bundleData.type === 'kiseki') {
+                // You should call loadBundle from within an async function or context.
+                async function getData() {
+                const result = await bundleData;
+
+                bundleData = result
+                
+                if (bundleData.type == 'kiseki') {
                     const novelTextBase64 = bundleData.kiseki;
-                    const imageBase64 = bundleData.assets;
+                    const imageBase64 = bundleData.assets[0];
+                    localStorage.setItem('base64Images', imageBase64);
 
                     // Load and display previously saved images
-                    const base64Images = imageBase64
+                    const base64Images = JSON.parse(imageBase64)
                     base64Images.forEach(base64 => {
                         displayImagePreview(base64);
                     });
 
+                    localStorage.setItem('story', bundleData.assets[1])
+
                     alert("ok")
 
-                    // You can add more logic to handle multiple images if needed
                 } else {
                     alert('Invalid .kawaibundle file: Incorrect type.');
                 }
+                }
+
+                getData()
             } catch (error) {
                 alert('Invalid .kawaibundle file: Error parsing JSON.');
             }

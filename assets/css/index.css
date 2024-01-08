@@ -38,7 +38,7 @@ textarea {
 /* Hover effect for paragraphs */
 #parsed-story:hover {
     background-color: #ffecf5; /* Even lighter pink */
-    transform: scale(1.02); /* Slightly larger on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
 }
 
 /* Styling for the 'Next' button */

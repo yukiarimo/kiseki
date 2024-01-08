@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Kiseki</title>
+    <title>Create - Kiseki</title>
     <link rel="canonical" href="http://www.kiseki.games/index.html">
     <meta property="og:url" content="http://www.kiseki.games/index.html">
     <meta name="twitter:description" content="VN Builder">
@@ -56,7 +56,7 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link active" href="index.html"><i
-                        class="fas fa-window-maximize"></i><span>Home</span></a></li>
+                                class="fas fa-window-maximize"></i><span>Home</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="build.html"><i
                                 class="fas fa-user"></i><span>Builder</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="create.html"><i
@@ -70,51 +70,23 @@
             <div id="content">
                 <div class="container-fluid">
                     <div class="block-o">
-                        <div class="coll-lo">
-                            <div class="block-card el-9">
-                                <div class="block-text la">Kiseki</div>
-                            </div>
-                        </div>
+                        <h1>Novel Builder</h1>
 
-                        <audio id="audio" src="assets/sounds/click.mp3"></audio>
+                        <label for="novel-title">Title:</label>
+                        <input type="text" id="novel-title" placeholder="Enter title" oninput="updateTitle(this.value)">
 
-                        <div class="coll-lo">
-                            <div class="block-card el-4">
-                                <div class="block-text la">Play</div>
-                                <button class=" onclick=" OpenPopup('story'); displayStory()">New Game</button>
-                                <button class="block-button" onclick="OpenPopup('story'); displayStory()">Load
-                                    Game</button>
-                                <button class="block-button">Assets</button>
-                                <button class="block-button">Settings</button>
-                                <button class="block-button"
-                                    onclick="document.body.innerHTML = `<div class='block-text la'>Close Tab<div>`">Quit</button>
-                            </div>
+                        <label for="novel-author">Author:</label>
+                        <input type="text" id="novel-author" placeholder="Enter author"
+                            oninput="updateAuthor(this.value)">
 
-                            <div class="block-card el-4">
-                                <div class="block-text la">Create</div>
-                                <button class="block-button" onclick="OpenLink('/create.html')">Create Game</button>
-                                <button class="block-button">Import Game</button>
-                                <input type="file" id="bundleFileInput" accept=".kawaibundle">
-                                <button class="block-button" onclick="OpenLink('/build.html')">Open Build</button>
-                                <button class="block-button">Assets</button>
-                                <button class="block-button">Help</button>
-                            </div>
-                        </div>
-                    </div>
+                        <button onclick="addBranch()">Add Branch</button>
+                        <button onclick="addEpisode()">Add Episode</button>
+                        <button onclick="addElement('text')">Add Text Element</button>
+                        <button onclick="addElement('choices')">Add Choices Element</button>
+                        <button onclick="manualUpdate()">Manual Update</button>
+                        <button onclick="downloadNovel()">Download Novel</button>
 
-                    <div class="block-popup" id="story">
-                        <div class="block-scroll mudiny center" id="parsed-story">
-                        </div>
-
-                        <div class="block-card h-coll el-4">
-                            <button class="block-button" id="nextButton">Next</button>
-                            <button class="block-button">History</button>
-                            <button class="block-button">Skip</button>
-                            <button class="block-button" onclick="OpenLink('/build')">Auto</button>
-                            <button class="block-button" onclick="SaveStory()">Save</button>
-                            <button class="block-button">Load</button>
-                            <button class="block-button">Settings</button>
-                        </div>
+                        <div id="novel-display"></div>
                     </div>
                 </div>
             </div>
@@ -122,7 +94,7 @@
     </div>
     <div class="heart-particles"></div>
 
-    <script src="assets/js/index.js"></script>
+    <script src="assets/js/create.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js?h=e55bde7d6e36ebf17ba0b8c1e80e4065"></script>
     <script src="assets/js/theme.js?h=79f403485707cf2617c5bc5a2d386bb0"></script>
 </body>
